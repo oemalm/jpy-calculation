@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold Points Calculation</title>
+    <title>JPY Pairs Calculation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@
             max-width: 600px;
             aspect-ratio: 1 / 1;
             margin: 10px auto;
-            background: url('Gold Points-new.jpg') no-repeat center center;
+            background: url('jpy.jpg') no-repeat center center;
             background-size: cover;
         }
         .input-field {
@@ -124,14 +124,15 @@
             errorMessage.textContent = "";
 
             // العمليات الحسابية
-            const profitPoints = ((takeProfit - priceNow) * 10).toFixed(1);
-            const lossPoints = ((priceNow - stopLoss) * 10).toFixed(1);
+            const profitPoints = ((takeProfit - priceNow) * 100).toFixed(1); // إصلاح الأرقام العشرية
+            const lossPoints = ((priceNow - stopLoss) * 100).toFixed(1); // إصلاح الأرقام العشرية
 
-            const profitBalance = (profitPoints * lot * 10).toFixed(2);
-            const lossBalance = (lossPoints * lot * 10 * -1).toFixed(2);
+            const profitBalance = (profitPoints * lot * 10).toFixed(2); // تحديد نتيجتين عشريتين
+            const lossBalance = (lossPoints * lot * 10 * -1).toFixed(2); // تحديد نتيجتين عشريتين
 
-            // عرض النتائج تحت الزر مع فواصل أسطر
-            result.innerHTML = `Profit Points: ${profitPoints} pips<br>
+            // عرض النتائج
+            result.innerHTML = `
+Profit Points: ${profitPoints} pips<br>
 Loss Points: ${lossPoints} pips<br>
 Profit Balance: $${profitBalance}<br>
 Loss Balance: $${lossBalance}`;
